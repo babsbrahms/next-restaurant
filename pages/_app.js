@@ -1,8 +1,9 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from "@apollo/client/react"
+import RootProvider from "../context/RootProvider"
+import Header from "../container/Header";
+import NavBar from "../container/NavBar"
 import '../styles/globals.css';
-
-// https://graphql.fauna.com/graphql
 
 const client = new ApolloClient({
   uri: 'https://48p1r2roz4.sse.codesandbox.io',
@@ -13,7 +14,22 @@ const client = new ApolloClient({
 function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
-      <Component {...pageProps} />
+      <Header />
+      <NavBar />
+      <div className="body" >
+        <RootProvider>
+           <Component {...pageProps} />
+        </RootProvider>
+       
+      </div>
+
+      <style jsx>
+        {`
+          .body {
+            padding: 30px
+          }
+        `}
+      </style>
     </ApolloProvider>
   )
 }
