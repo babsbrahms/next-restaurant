@@ -33,17 +33,19 @@ type Memu {
 }
 
 type Restaurant {
-    name: String!
+    name: String! @unique
     logo: String!
     description: String
     memus: [Memu!]! @relation
 }
 
 type Query {
-    allRestaurants: [Restaurant!]!
-    getRestaurants(name: String!): Memu
-    allUsers: [User!]!
-    getUserByName(email: String!): Memu
-    allOrders: [Order!]!
-    allMemus: [Memu!]!
+    restaurants: [Restaurant!]!
+    getRestaurantByName (name: String!): Restaurant
+    users: [User!]!
+    getUserByEmail(email: String!): User
+    orders: [Order!]!
+    getOrderByUserId (userId: String!): Order
+    memus: [Memu!]!
+    getMemuByRestaurant (restaurantId: String!): Memu
 }
