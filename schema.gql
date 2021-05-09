@@ -1,0 +1,41 @@
+
+type User {
+    name: String!
+    email: String! @unique
+    address: String!
+    orders: [Order!]!
+}
+
+type Order {
+    orders: [Memu]!
+    totalPrice: Float!
+    tax: Float!
+    price: Float!
+    user: User!
+}
+
+
+type Memu {
+    name: String!
+    photo: String!
+    price: Float!
+    description: String
+    vegan: Boolean
+    restaurant: Restaurant!
+}
+
+type Restaurant {
+    name: String!
+    logo: String!
+    description: String
+    memus: [Memu!]!
+}
+
+type Query {
+    allRestaurants: [Restaurant!]!
+    getRestaurants(name: String!): Memu
+    allUsers: [User!]!
+    getUserByName(email: String!): Memu
+    allOrders: [Order!]!
+    allMemus: [Memu!]!
+}
