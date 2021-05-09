@@ -3,15 +3,22 @@ type User {
     name: String!
     email: String! @unique
     address: String!
-    orders: [Order!]!
+    orders: [Order!]! @relation
 }
 
 type Order {
-    orders: [Memu]!
+    orders: [Placement]!
     totalPrice: Float!
     tax: Float!
     price: Float!
+    userId: String!
     user: User!
+    date: Date!
+}
+
+type Placement @embedded {
+    quantity: Int!,
+    food: Memu
 }
 
 
@@ -21,6 +28,7 @@ type Memu {
     price: Float!
     description: String
     vegan: Boolean
+    restaurantId: String!
     restaurant: Restaurant!
 }
 
@@ -28,7 +36,7 @@ type Restaurant {
     name: String!
     logo: String!
     description: String
-    memus: [Memu!]!
+    memus: [Memu!]! @relation
 }
 
 type Query {
