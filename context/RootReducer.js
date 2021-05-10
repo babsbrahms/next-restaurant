@@ -21,16 +21,42 @@ export default function RootReducer (state = initialState, action) {
                 address: action.payload
             };
 
-        case "ADD_ORDER":
-            
-            return {
-                ...state,
-                orders: [...state.orders, action.payload]
-            };
-        case "REMOVE_ORDER":
+        case "ADD_ORDER": {
+            let orders = state.orders;
+            let index = orders.findIndex((x) => x._id === action.payload._id);
+
+            if (index < 0) {
+                return {
+                    ...state,
+                    orders: [...orders, { ...action.payload, qty: 1 }]
+                };
+            } else {
+                orders[index] = {...orders[index], qty: orders[index].qty + 1 }
+                return {
+                    ...state,
+                    orders: [...orders]
+                };
+            }
+        }
+
+        case "REMOVE_ORDER": {
             let orders = state.orders;
             let index = orders.findIndex((x) => x._id === action.payload)
-            return state;
+            
+            if (orders[index].qty <= 1) {
+                orders.splice(index, 1)
+                return {
+                    ...state,
+                    orders: [...orders]
+                };
+            } else {
+                orders[index] = {...orders[index], qty: orders[index].qty - 1 }
+                return {
+                    ...state,
+                    orders: [...orders]
+                };
+            }
+        }
         case "CLEAR_ORDER":
             
             return {

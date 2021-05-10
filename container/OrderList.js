@@ -5,11 +5,11 @@ export const OrderList = ({ order, increment, decrement }) => {
         <div>
             <h2 className="food">{order.name}</h2>
             <small className="restaurant">{order.restaurant.name}</small>
-            <span className="price">${order.price}</span>
+            <span className="price">${Number(order.price * order.qty).toFixed(2)}</span>
             <div className="calc">
-                <button className="btn" onClick={() => increment(order._id)}>+</button> 
-                <span className="qty">0</span> 
-                <button className="btn" onClick={() => decrement(order)}>-</button>
+                <button className="btn" onClick={() => increment(order)}>+</button> 
+                <span className="qty">{order.qty}</span> 
+                <button className="btn" onClick={() => decrement(order._id)}>-</button>
             </div>
             
 
@@ -58,7 +58,6 @@ export const OrderList = ({ order, increment, decrement }) => {
                         background-color: #111;
                         color: white;
                         cursor: pointer
-
                     }
                 `}
             </style>

@@ -4,6 +4,7 @@ import { OrderList } from "../container/OrderList"
 
 const order = () => {
     const { orders, addOrder, removeOrder } = useContext(RootContext)
+    let price = orders.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)
     return (
         <div>
             <h1 className="header">Your Order</h1>
@@ -25,10 +26,10 @@ const order = () => {
                 </section>
                 <section className="jobotron">
          
-                    <p>tax: 10%</p>
-                    <p>price: $50</p>
+                    <p>tax: ${Number(0.1 * price).toFixed(2)}</p>
+                    <p>price: ${Number(price).toFixed(2)}</p>
                     <h1>
-                        Total price: $60
+                        Total price: ${Number(price + (0.1 * price)).toFixed(2)}
                     </h1>
                     <button>
                         Place Order
