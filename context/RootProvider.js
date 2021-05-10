@@ -4,7 +4,8 @@ import RootReducer from "./RootReducer";
 const initialState = {
     mobile: "",
     address: "",
-    orders: []
+    orders: [],
+    discount: false
 };
 
 
@@ -49,17 +50,24 @@ export default function RootProvider ({ children }) {
         })
     }
 
+    const addDiscount = () => {
+        dispatch({
+            type: "ADD_DISCOUNT"
+        })
+    }
 
     return (
         <RootContext.Provider value={{
             name: state.name,
             address: state.address,
             orders: state.orders,
+            discount: state.discount,
             addOrder,
             removeOrder,
             clearOrder,
             addUserAddress,
-            addUserMobile
+            addUserMobile,
+            addDiscount
         }}>
             {children}
         </RootContext.Provider>

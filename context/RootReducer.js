@@ -2,11 +2,18 @@
 const initialState = {
     mobile: "",
     address: "",
-    orders: []
+    orders: [],
+    discount: false
 }
 
 export default function RootReducer (state = initialState, action) {
     switch (action.type) {
+        case "ADD_DISCOUNT":
+            
+            return {
+                ...state,
+                discount: true
+            };
         case "ADD_USER_MOBILE":
             
             return {

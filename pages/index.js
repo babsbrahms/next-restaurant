@@ -1,11 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import axios from "axios";
 import Link from "next/link";
 import { Card } from "../container/Card"
+import { RootContext } from "../context/RootProvider"
 
 
 function Home({ restaurants }) {
-//   console.log(restaurants)
+	const { addDiscount, discount } = useContext(RootContext)
   if (!restaurants) {
     return <h3>Loading</h3>
     
@@ -26,9 +27,9 @@ function Home({ restaurants }) {
 			<h1>
 				Discount
 			</h1>
-			<p>Get 20% off your first order!</p>
-			<button>
-				Sign Up!
+			<p>Get 10% off your first order!</p>
+			<button onClick={() => addDiscount()}>
+			 	{discount? "Discount Added" : "Get Discount"}	
 			</button>
 		</section>
 		<p className="sub-header">
