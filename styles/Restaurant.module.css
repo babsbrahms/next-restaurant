@@ -1,0 +1,48 @@
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .header {
+        margin-top: 25px;
+        text-align: center;
+        font-size: 40px;
+    }
+
+    .img {
+        border-radius: 20px;
+        align-self: center;
+    }
+    .sub_header {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 18px;
+        font-style: italic;
+    }
+
+    .menu_header {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 30px;
+    }
+
+    .memu_container {
+        display: grid;
+        grid-template-columns: repeat(3, 2fr);
+        column-gap: 1em;
+    }
+
+
+    @media screen and (max-width: 768px) {
+        .memu_container {
+            grid-template-columns: repeat(1, 2fr);
+        }
+    }
+
+    @media screen and (min-width: 769px) {
+        .memu_container {
+            grid-template-columns: repeat(3, 2fr);
+        }
+    }

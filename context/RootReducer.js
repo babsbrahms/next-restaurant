@@ -1,24 +1,24 @@
 
 const initialState = {
-    name: "",
+    mobile: "",
     address: "",
     orders: []
 }
 
 export default function RootReducer (state = initialState, action) {
     switch (action.type) {
-        case "ADD_USER_NAME":
+        case "ADD_USER_MOBILE":
             
             return {
                 ...state,
-                name: action.payload
+                mobile: action.payload
             };
 
-        case "ADD_USER_EMAIL":
+        case "ADD_USER_ADDRESS":
             
             return {
                 ...state,
-                email: action.payload
+                address: action.payload
             };
 
         case "ADD_ORDER":

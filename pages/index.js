@@ -5,7 +5,7 @@ import { Card } from "../container/Card"
 
 
 function Home({ restaurants }) {
-  console.log(restaurants)
+//   console.log(restaurants)
   if (!restaurants) {
     return <h3>Loading</h3>
     
@@ -38,10 +38,11 @@ function Home({ restaurants }) {
 		</p>
 		<section className="card-container">
 		{restaurants && restaurants.map(({ name, description, logo, _id }) => (
-			<Link href="/restaurants/[name]" as={`/restaurants/mac`}> 
+			<Link key={_id} href="/restaurants/[name]" as={`/restaurants/${name}`}> 
 				<a>
 					<Card>
 						<h2>{name}</h2>
+						<p>{description}</p>
 					</Card>
 				</a>
 			</Link>
@@ -71,7 +72,7 @@ function Home({ restaurants }) {
 			}
 
 			.jobotron {
-				width: 100%
+				width: 100%;
 				min-height: 10px;
 				padding: 20px;
 				padding-left: 50px;
@@ -92,12 +93,12 @@ function Home({ restaurants }) {
 				margin: 0px;
 				font-size: 16px;
 				border-radius: 5px;
-				transition: background 0.5s ease;
+				transition: background-color 0.5s ease;
 				cursor: pointer;
 			}
 
 			.jobotron button:hover {
-				background: #ee9ca7;
+				background-color: #ee9ca7;
 			}
 
 			@media screen and (max-width: 768px) {
@@ -146,7 +147,7 @@ export async function getStaticProps () {
 	
 		let restaurants = data.restaurants.data;
 
-		console.log(errors)
+		// console.log(errors)
 		if (errors) {
 			return {
 				notFound: true, // 404

@@ -29,7 +29,8 @@
     
 .card p {
     margin: 0;
-    font-size: 1.25rem;
+    font-style: italic;
+    font-size: 14px;
     line-height: 1.5;
 }
 

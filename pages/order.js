@@ -14,7 +14,7 @@ const order = () => {
 
                 <section className="card-container">
                     {orders.map(order => (
-                        <div>
+                        <div key={order._id}>
                             <OrderList 
                                 order={order} 
                                 increment={(menu) => addOrder(menu)}
@@ -25,10 +25,10 @@ const order = () => {
                 </section>
                 <section className="jobotron">
          
-                    <p>tax: </p>
-                    <p>price: </p>
+                    <p>tax: 10%</p>
+                    <p>price: $50</p>
                     <h1>
-                        Total price: 
+                        Total price: $60
                     </h1>
                     <button>
                         Place Order

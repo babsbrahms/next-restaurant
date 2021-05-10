@@ -2,9 +2,9 @@ import React, { createContext, useReducer } from "react";
 import RootReducer from "./RootReducer";
 
 const initialState = {
-    name: "",
+    mobile: "",
     address: "",
-    orders: [1,2,3]
+    orders: []
 };
 
 
@@ -14,10 +14,10 @@ export const RootContext = createContext(initialState)
 export default function RootProvider ({ children }) {
     const [state, dispatch] = useReducer(RootReducer, initialState)
 
-    const addUserName = (name) => {
+    const addUserMobile = (mobile) => {
         dispatch({
-            type: "ADD_USER_NAME",
-            payload: name
+            type: "ADD_USER_MOBILE",
+            payload: mobile
         })
     }
 
@@ -59,7 +59,7 @@ export default function RootProvider ({ children }) {
             removeOrder,
             clearOrder,
             addUserAddress,
-            addUserName
+            addUserMobile
         }}>
             {children}
         </RootContext.Provider>

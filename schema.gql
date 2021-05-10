@@ -45,7 +45,7 @@ type Query {
     users: [User!]!
     getUserByEmail(email: String!): User
     orders: [Order!]!
-    getOrderByUserId (userId: String!): Order
+    getOrderByUserId (userId: String!): [Order]
     memus: [Memu!]!
-    getMemuByRestaurant (restaurantId: String!): Memu
+    getMemuByRestaurant (restaurantId: String!): [Memu]
 }
