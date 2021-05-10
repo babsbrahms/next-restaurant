@@ -28,7 +28,7 @@
         margin: 30px;
     }
 
-    .memu_container {
+    .menu_container {
         display: grid;
         grid-template-columns: repeat(3, 2fr);
         column-gap: 1em;
@@ -36,13 +36,13 @@
 
 
     @media screen and (max-width: 768px) {
-        .memu_container {
+        .menu_container {
             grid-template-columns: repeat(1, 2fr);
         }
     }
 
     @media screen and (min-width: 769px) {
-        .memu_container {
+        .menu_container {
             grid-template-columns: repeat(3, 2fr);
         }
     }

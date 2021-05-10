@@ -3,9 +3,9 @@ import React from 'react'
 export const OrderList = ({ order, increment, decrement }) => {
     return (
         <div>
-            <h2 className="food">Food</h2>
-            <small className="restaurant">Restaurant</small>
-            <span className="price">$10</span>
+            <h2 className="food">{order.name}</h2>
+            <small className="restaurant">{order.restaurant.name}</small>
+            <span className="price">${order.price}</span>
             <div className="calc">
                 <button className="btn" onClick={() => increment(order._id)}>+</button> 
                 <span className="qty">0</span> 

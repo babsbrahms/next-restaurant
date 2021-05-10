@@ -3,46 +3,44 @@ import axios from "axios"
 import { useRouter } from "next/router";
 import Header from "../../container/Header";
 import { Menu } from "../../container/Menu";
-import styles from "../../styles/Restaurant.module.css"
+import styles from "../../styles/Restaurant.module.css";
+import ErrorBoundary from "../../container/ErrorBoundary"
 
 
 const RestaurantName = ({ restaurant }) => {
-
-	const [memus, setMemus] = useState([1,2,3,4])
-	useEffect(() => {
-		if (restaurant._id) {
-			console.log("called> ",  restaurant._id)
-			const getMemu =  async() => {
-				
-				let res= await axios.get(`http://localhost:3000/api/memus/${restaurant._id}`)
-
-				console.log("memu: ", res.data.memus)
-				setMemus(res.data.memus)
-			}
-
-			
-
-			getMemu();
-		}
-	})
-
-	console.log(restaurant)
     const router = useRouter();
     let name = router.query.name;
+	const [menus, setMenus] = useState([])
+	useEffect(() => {
+		const getMenu =  async() => {
+			
+			let res= await axios.get(`http://localhost:3000/api/menus/${name}`)
+
+			console.log("menu: ", res.data)
+			setMenus(res.data.menus)
+		}
+
+		getMenu();
+	}, [])
+
+	// console.log(restaurant)
+
     return (
         <div className={styles.container}>
-            <Header title={name} description={restaurant.description} />
-			<h1 className={styles.header}>{restaurant.name}</h1>
-			<img className={styles.img} src={restaurant.logo} width="80%" height="auto" />
-			<p className={styles.sub_header}>{restaurant.description}</p>
+			<ErrorBoundary>
+				<Header title={name} description={restaurant.description} />
+				<h1 className={styles.header}>{restaurant.name}</h1>
+				<img className={styles.img} src={restaurant.logo} width="80%" height="auto" />
+				<p className={styles.sub_header}>{restaurant.description}</p>
 
-			<h3 className={styles.menu_header}>Menus</h3>
+				<h3 className={styles.menu_header}>Menus</h3>
 
-			<section className={styles.memu_container}>
-				{memus && memus.map((memu) => (
-					<Menu key={memu._id} memu={memu} restaurant={restaurant} />
-				))}
-			</section>
+				<section className={styles.menu_container}>
+					{menus.map((menu) => (
+						<Menu key={menu._id} menu={menu} restaurant={restaurant} />
+					))}
+				</section>
+			</ErrorBoundary>
         </div>
     )
 }
