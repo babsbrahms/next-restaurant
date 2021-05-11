@@ -34,6 +34,14 @@
         column-gap: 1em;
     }
 
+    .error {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 18px;
+        font-style: italic;
+        color: coral;
+    }
+
 
     @media screen and (max-width: 768px) {
         .menu_container {

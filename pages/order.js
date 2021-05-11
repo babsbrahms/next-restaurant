@@ -1,10 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { RootContext } from "../context/RootProvider"
 import { OrderList } from "../container/OrderList"
 
 const order = () => {
-    const { orders, addOrder, removeOrder, discount } = useContext(RootContext)
+    const { orders, addOrder, removeOrder, discount, clearOrder } = useContext(RootContext)
     let price = orders.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)
+    const unUser = useRef(null)
+    const [placed, setPlaced] = useState(false)
+    useEffect(() => {
+      
+      () => {
+        if (unUser.current) {
+            clearTimeout(unUser.current)
+        }
+      }  
+    }, [placed])
+
+    const placeOrder = () => {
+        setPlaced(true)
+        unUser.current = setTimeout(() => {
+            clearOrder()
+        }, 3000)
+    }
+
+
     return (
         <div>
             <h1 className="header">Your Order</h1>
@@ -32,8 +51,8 @@ const order = () => {
                     <h1>
                         Total price: ${discount?  Number(price).toFixed(2): Number(price + (0.1 * price)).toFixed(2)}
                     </h1>
-                    <button>
-                        Place Order
+                    <button onClick={() => placeOrder()}>
+                        {placed? "Order Received" : "Place Order" }  
                     </button>
                 </section>
                 

@@ -23,12 +23,16 @@ const RestaurantName = ({ restaurant }) => {
 		getMenu();
 	}, [])
 
-	// console.log(restaurant)
+	if (!restaurant) {
+		return (
+			<h1 className={styles.error}>Loading...</h1>
+		)
+	}
 
     return (
         <div className={styles.container}>
 			<ErrorBoundary>
-				<Header title={name} description={restaurant.description} />
+				<Header title={name} description={restaurant? restaurant.description : ""} />
 				<h1 className={styles.header}>{restaurant.name}</h1>
 				<img className={styles.img} src={restaurant.logo} width="80%" height="auto" />
 				<p className={styles.sub_header}>{restaurant.description}</p>
@@ -80,11 +84,21 @@ export async function getStaticProps (context) {
 	
 		let restaurant = data.getRestaurantByName;
 
+		if (!restaurant) {
+			return {
+				notFound: true,
+				// redirect: {
+				//   destination: '/',
+				//   permanent: false,
+				// },
+			}
+		}
+
 		return {
 			props: {
 				restaurant
             },
-            // revalidate: 1
+            revalidate: 5
 		}
 	} catch (error) {
 		return {
