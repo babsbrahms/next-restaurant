@@ -17,7 +17,8 @@ const NavBar = () => {
 
             <Link href="/order" >
                 <div className="order">
-                Order <span>{orders.length}</span>
+                Order 
+                {/* <span>{orders.length}</span> */}
                 </div>
             </Link>
 
