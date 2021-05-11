@@ -14,19 +14,25 @@ const client = new ApolloClient({
 function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
+      <RootProvider>
       <Header />
       <NavBar />
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       <div className="body" >
-        <RootProvider>
            <Component {...pageProps} />
-        </RootProvider>
-       
       </div>
-
+      </RootProvider>
       <style jsx>
         {`
           .body {
-            padding: 30px
+            padding: 30px;
+          }
+          .br {
+            padding: 150px
           }
         `}
       </style>

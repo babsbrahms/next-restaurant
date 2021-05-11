@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Link from "next/link"
 import { RootContext } from "../context/RootProvider"
-import order from '../pages/order';
+
 
 const NavBar = () => {
     const { orders } = useContext(RootContext)
@@ -18,7 +18,7 @@ const NavBar = () => {
             <Link href="/order" >
                 <div className="order">
                 Order 
-                {/* <span>{orders.length}</span> */}
+                <span>{orders.length}</span>
                 </div>
             </Link>
 
@@ -34,6 +34,10 @@ const NavBar = () => {
                         flex-direction: row;
                         justify-content: space-between;
                         align-items: center;
+                        position: fixed;
+                        top; 0;
+                        left: 0;
+                        box-shadow: 2px 2px 5px #111;
                     }
                 
                     .lead {
