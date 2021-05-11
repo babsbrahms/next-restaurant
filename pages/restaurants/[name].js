@@ -5,7 +5,7 @@ import Header from "../../container/Header";
 import { Menu } from "../../container/Menu";
 import styles from "../../styles/Restaurant.module.css";
 import ErrorBoundary from "../../container/ErrorBoundary"
-
+import server from "../../config/index"
 
 const RestaurantName = ({ restaurant }) => {
     const router = useRouter();
@@ -14,7 +14,7 @@ const RestaurantName = ({ restaurant }) => {
 	useEffect(() => {
 		const getMenu =  async() => {
 			
-			let res= await axios.get(`http://localhost:3000/api/menus/${name}`)
+			let res= await axios.get(`${server}/api/menus/${name}`)
 
 			console.log("menu: ", res.data)
 			setMenus(res.data.menus)
