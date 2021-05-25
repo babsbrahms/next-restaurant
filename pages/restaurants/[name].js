@@ -8,20 +8,9 @@ import ErrorBoundary from "../../container/ErrorBoundary"
 import server from "../../config/index"
 
 const RestaurantName = ({ restaurant }) => {
+	console.log(restaurant)
     const router = useRouter();
     let name = router.query.name;
-	const [menus, setMenus] = useState([])
-	useEffect(() => {
-		const getMenu =  async() => {
-			
-			let res= await axios.get(`${server}/api/menus/${name}`)
-
-			console.log("menu: ", res.data)
-			setMenus(res.data.menus)
-		}
-
-		getMenu();
-	}, [])
 
 	if (!restaurant) {
 		return (
@@ -40,7 +29,7 @@ const RestaurantName = ({ restaurant }) => {
 				<h3 className={styles.menu_header}>Menus</h3>
 
 				<section className={styles.menu_container}>
-					{menus.map((menu) => (
+					{restaurant.memus.data.map((menu) => (
 						<Menu key={menu._id} menu={menu} restaurant={restaurant} />
 					))}
 				</section>
@@ -70,7 +59,6 @@ export async function getStaticProps (context) {
 									_id
 									name
 									price
-									photo
 								}
 							}
 						}

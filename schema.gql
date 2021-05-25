@@ -1,51 +1,48 @@
-
 type User {
-    name: String!
-    email: String! @unique
-    address: String!
-    orders: [Order!]! @relation
+  name: String!
+  email: String! @unique
+  address: String!
+  orders: [Order!]! @relation
 }
 
 type Order {
-    orders: [Placement]!
-    totalPrice: Float!
-    tax: Float!
-    price: Float!
-    userId: String!
-    user: User!
-    date: Date!
+  orders: [Placement]!
+  totalPrice: Float!
+  tax: Float!
+  price: Float!
+  userId: String!
+  user: User!
+  date: Date!
 }
 
 type Placement @embedded {
-    quantity: Int!,
-    food: Memu
+  quantity: Int!
+  food: Memu
 }
 
-
 type Memu {
-    name: String!
-    photo: String!
-    price: Float!
-    description: String
-    vegan: Boolean
-    restaurantId: String!
-    restaurant: Restaurant!
+  name: String!
+  # photo: String!
+  price: Float!
+  # description: String
+  # vegan: Boolean
+  # restaurantId: String!
+  restaurant: Restaurant! @relation
 }
 
 type Restaurant {
-    name: String! @unique
-    logo: String!
-    description: String
-    memus: [Memu!]! @relation
+  name: String! @unique
+  logo: String!
+  description: String
+  memus: [Memu!]! @relation
 }
 
 type Query {
-    restaurants: [Restaurant!]!
-    getRestaurantByName (name: String!): Restaurant
-    users: [User!]!
-    getUserByEmail(email: String!): User
-    orders: [Order!]!
-    getOrderByUserId (userId: String!): [Order]
-    memus: [Memu!]!
-    getMemuByRestaurant (restaurantId: String!): [Memu]
+  restaurants: [Restaurant!]!
+  getRestaurantByName(name: String!): Restaurant
+  users: [User!]!
+  getUserByEmail(email: String!): User
+  orders: [Order!]!
+  getOrderByUserId(userId: String!): [Order]
+  memus: [Memu!]!
 }

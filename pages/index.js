@@ -148,7 +148,7 @@ export async function getStaticProps () {
 	
 		let restaurants = data.restaurants.data;
 
-		// console.log(errors)
+		// console.log(restaurants)
 		if (errors) {
 			return {
 				notFound: true, // 404
